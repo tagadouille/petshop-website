@@ -1,6 +1,7 @@
 # petshop-website
 
 Projet de **site web de vente de produits pour animaux**.
+Il a été réalisé en binôme avec Mohamed Ibrir en 2024 sans utiliser git.
 
 ---
 
