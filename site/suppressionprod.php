@@ -3,7 +3,7 @@ session_start();
 require_once('traitement.php');
 
 if(isset($_SESSION['type'])){
-    if($_SESSION['type'] == 'Customer'){
+    if($_SESSION['type'] != 'Seller'){
         header('Location: profil.php');
         exit();
     }
@@ -12,7 +12,7 @@ if(isset($_SESSION['type'])){
     exit();
 }
 $connex = connection();
-    if(!empty($_GET['numProd'])){
+    if(!empty(($_GET['numProd'])){
         $idpro = $_GET['numProd'];
 
         if(deleteProd($connex, $idpro)){

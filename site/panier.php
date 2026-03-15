@@ -20,7 +20,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style2.css">
-	<link rel="icon" type="image/png" href="icon.png" />
 	<title>Panier</title>
 </head>
 <body>
@@ -33,8 +32,6 @@
 		}
 		//Affichage des articles du panier
 		panier($connex, $_SESSION['id']);
-
-		footers();
 	?>
 
 </body>

@@ -6,23 +6,6 @@
 		header('Location: profil.php');
 		exit();
 	}
-	if(isset($_POST['type'])){
-		$connex = mysqli_connect('localhost', 'root', '', 'projet');
-		 if(!$connex){
-			header('Location: ERROR.php');
-			exit();
-		}
-		 mysqli_set_charset($connex, 'utf8');
-		 $result = connect($connex, $_POST['type']);
-		 if($result == 0){
-		 	header('Location: finish2.php');
-		 	exit();
-		 }else{
-		 	$_SESSION['msg'] = $result;
-		 	header('Location: login.php');
-		 	exit();
-		 }
-    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +13,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style2.css">
-	<link rel="icon" type="image/png" href="icon.png" />
 	<title>Connexion</title>
 </head>
 <body>
@@ -74,8 +56,24 @@
 			$err = 0;
 		}
 		login($err);
-	    echo "<br><br><br><br>";
-	    footers();
+		
+		if(isset($_POST['type'])){
+			 $connex = mysqli_connect('localhost', 'root', '', 'projet');
+			 if(!$connex){
+				header('Location: ERROR.php');
+				exit();
+			}
+			 mysqli_set_charset($connex, 'utf8');
+			 $result = connect($connex, $_POST['type']);
+			 if($result == 0){
+			 	header('Location: finish2.php');
+			 	exit();
+			 }else{
+			 	$_SESSION['msg'] = $result;
+			 	header('Location: login.php');
+			 	exit();
+			 }
+	    }
 	?>
 
 </body>

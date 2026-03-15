@@ -37,7 +37,7 @@
 			}
 		?>
 		<form method="post" action='deathbar.php'>
-	        <input type='text' name='search' maxlength="50">
+	        <input type='text' name='search'>
 	        <label>produit</label><input type='radio' name = 'type' value='Product' checked>
 	        <label>profil vendeur</label><input type='radio' name = 'type' value='Seller'>&nbsp;
 	        <label>profil client</label><input type='radio' name = 'type' value='Customer'>
@@ -51,9 +51,5 @@
 	    ?>
 	</aside>
 	</section>
-	<br><br><br>
-	<?php
-		footers();
-	?>
 </body>
 </html>

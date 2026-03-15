@@ -3,13 +3,12 @@ require_once('annexe.php');
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="style2.css">
-        <link rel="icon" type="image/png" href="icon.png" />
-    <title>Politique</title>
+    <title>Document</title>
 </head>
 <body>
 
@@ -32,7 +31,7 @@ navbar("none");
 
 <p>Contenu Utilisateur</p>
 
-<p>3.1 Vous conservez la propriété intellectuelle de tout contenu que vous publiez sur ChunChunMaru. Cependant, en publiant du contenu sur notre site, vous nous accordez une licence mondiale, non-exclusive, transférable, sous-licenciable, gratuite pour utiliser, reproduire, distribuer, préparer des œuvres dérivées, afficher et exécuter ce contenu.</p>
+<p>3.1 Vous conservez la propriété intellectuelle de tout contenu que vous publiez sur ChunChunMaru. Cependant, en publiant du contenu sur notre site, vous nous accordez une licence mondiale, non exclusive, transférable, sous-licenciable, gratuite pour utiliser, reproduire, distribuer, préparer des œuvres dérivées, afficher et exécuter ce contenu.</p>
 
 <p>3.2 Vous acceptez de ne pas publier de contenu qui soit diffamatoire, obscène, offensant, violent, illégal ou qui enfreint les droits de propriété intellectuelle de tiers.</p>
 
@@ -48,13 +47,13 @@ navbar("none");
 
 <p>Résiliation</p>
 
-<p>6.1 Vous pouvez résilier votre compte sur ChunChunMaru à tout moment en nous contactant</p>
+<p>6.1 Vous pouvez résilier votre compte sur ChunChunMaru à tout moment en nous contactant ou en utilisant les fonctionnalités de résiliation disponibles sur le site.</p>
 
 <p>6.2 Nous nous réservons le droit de suspendre ou de résilier votre accès à ChunChunMaru si nous estimons que vous avez enfreint les présentes CGU ou toute autre politique applicable.</p>
 
 <p>Lois Applicables</p>
 
-<p>7.1 Les présentes CGU sont régies et interprétées conformément aux lois en vigueur en France, sans égard aux principes de conflit de lois.</p>
+<p>7.1 Les présentes CGU sont régies et interprétées conformément aux lois en vigueur dans France, sans égard aux principes de conflit de lois.</p>
 
 <p>En utilisant ChunChunMaru, vous acceptez d'être lié par ces conditions. Si vous avez des questions ou des préoccupations concernant ces CGU, veuillez nous contacter à contact@monsiteanimaux.com. Merci de votre confiance et de votre utilisation de ChunChunMaru !</p>
 

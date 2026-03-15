@@ -28,9 +28,6 @@
 		?>
 		<label>Code secret: </label><input type="text" name="secret" size="20"><br>
 		<input type="submit" value="Valider">
-	</form><br><br><br><br><br>
-	<?php
-		footers();
-	?>
+	</form>
 </body>
 </html>

@@ -14,7 +14,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="style2.css">
-		<link rel="icon" type="image/png" href="icon.png" />
 	<title>ChunChunMaru</title>
 </head>
 
@@ -27,9 +26,6 @@
 		}
 	?>
 	<section id="mainsection">
-		<?php
-			if(!isset($_GET['type']) || $_GET['type'] != 'Seller'){
-		?>
 		<form method='post' id='connx'>
 			<span>Trié par: </span>
 			<input type="radio" name = 'tri' value="sell">
@@ -46,23 +42,18 @@
 			<input type="submit" value="Valider">
 		</form>
 		<?php
-			}
 			if(!isset($_POST['order'])) $order = 'DESC';
 			else $order = $_POST['order'];
 
 			//Affichage selon les catégories des produits
-			if(isset($_GET['cat'])){
-				if(isset($_GET['sub'])) $sub = urldecode($_GET['sub']);
-				else $sub = "none";
+			if(isset($_GET['sub']) && isset($_GET['cat'])){
+				$sub = urldecode($_GET['sub']);
 				$cat = $_GET['cat'];
-				if(isset($_GET['sub'])) echo "<h1>$sub pour $cat</h1>";
-				else echo "<h1>Produits pour $cat</h1>";
+				echo "<h1>$sub pour $cat</h1>";
 				if(isset($_POST['tri'])){
-					if(isset($_GET['sub'])) display($connex,$_POST['tri'],$_GET['cat'],$_GET['sub'], $order);
-					else display($connex,$_POST['tri'],$_GET['cat'],"none", $order);
+					display($connex,$_POST['tri'],$_GET['cat'],$_GET['sub'], $order);
 				}else{
-					if(isset($_GET['sub'])) display($connex,"default",$_GET['cat'],$_GET['sub'], $order);
-					else display($connex,"default",$_GET['cat'],"none", $order);
+					display($connex,"default",$_GET['cat'],$_GET['sub'], $order);
 				}
 			}else if(isset($_GET['search'])){
 				if($_GET['type'] == 'Seller' || $_GET['type'] == 'Product'){

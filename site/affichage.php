@@ -40,25 +40,19 @@
 				echo "<h2 style= 'margin-top: 200px;'>Catégorie inexistante</h2>";
 				return 1;
 			}
-			if($subcategory != 'none'){
-				$subcat = findSubcat($connex,$subcategory,$cat);
-				$cond = " AND P.subcategory = $subcat";
-			}else{
-				$cond = "";
-				$subcat = true;
-			} 
+			$subcat = findSubcat($connex,$subcategory,$cat);
 			if(!$subcat){
 				echo "<h2 style= 'margin-top: 200px;'>Catégorie inexistante</h2>";
 				return 1;
 			}
 			if($param == 'default'){
-				$req = "SELECT P.id as id,name,image,price FROM Product P WHERE P.category = $cat $cond;";
+				$req = "SELECT P.id as id,name,image,price FROM Product P WHERE P.category = $cat AND P.subcategory = $subcat;";
 			}if($param == 'sell'){
-				$req = "SELECT P.id as id,name,image,price FROM Product P WHERE P.category = $cat $cond ORDER BY sellnumber $order;";
+				$req = "SELECT P.id as id,name,image,price FROM Product P WHERE P.category = $cat AND P.subcategory = $subcat ORDER BY sellnumber $order;";
 			}if($param == 'score'){
-				$req = "SELECT P.id as id,name,image,price,AVG(S.score) as score FROM Product P, Score S WHERE P.id = S.idProduct AND P.category = $cat $cond GROUP BY P.id ORDER BY score $order;";
+				$req = "SELECT P.id as id,name,image,price,AVG(S.score) as score FROM Product P, Score S WHERE P.id = S.idProduct AND P.category = $cat AND P.subcategory = $subcat GROUP BY P.id ORDER BY score $order;";
 			}if($param = 'date'){
-				$req = "SELECT P.id as id,name,image,price FROM Product P WHERE P.category = $cat $cond ORDER BY P.id $order;";
+				$req = "SELECT P.id as id,name,image,price FROM Product P WHERE P.category = $cat AND P.subcategory = $subcat ORDER BY P.id $order;";
 			}
 		}
 
@@ -95,54 +89,51 @@
 	//Fonction qui affiche les résultats de la recherche
 	function research($connex, $search,$type){
     	if($search == ''){
-    		if($type == 'Product') $req = "SELECT * FROM $type;";
-    		else $req = "SELECT * FROM $type;";
-    		//display($connex,'default',"none","none","DESC");
-    	}
-    	$research = '%'.mysqli_real_escape_string($connex,$search).'%';
-   		if($type == 'Product') $req = "SELECT * FROM $type WHERE name LIKE '$research';";
-   		else $req = "SELECT * FROM $type WHERE pseudo LIKE '$research';";
+    		display($connex,'default',"none","none","DESC");
+    	}else{
+    		$research = '%'.mysqli_real_escape_string($connex,$search).'%';
+    		if($type == 'Product') $req = "SELECT * FROM $type WHERE name LIKE '$research';";
+    		else $req = "SELECT * FROM $type WHERE pseudo LIKE '$research';";
 
-    	$response = mysqli_query($connex, $req);
-    	if($response){
-			if(mysqli_num_rows($response) == 0 && $type == 'Product'){
-				echo "<h2 style= 'margin-top: 200px;'>Aucun article de ce nom existe encore</h2>";
-				return;
-			}if(mysqli_num_rows($response) == 0 && $type != 'Product'){
-				echo "<h2 style= 'margin-top: 200px;'>Aucun profil de ce nom existe encore</h2>";
-				return;
-			}if($type == 'Product'){
+    		$response = mysqli_query($connex, $req);
+    		if($response){
+				if(mysqli_num_rows($response) == 0 && $type == 'Product'){
+					echo "<h2 style= 'margin-top: 200px;'>Aucun article de ce nom existe encore</h2>";
+				}if(mysqli_num_rows($response) == 0 && $type != 'Product'){
+					echo "<h2 style= 'margin-top: 200px;'>Aucun profil de ce nom existe encore</h2>";
+				}if($type == 'Product'){
 
-				while($ligne = mysqli_fetch_assoc($response)){
-					$id = $ligne['id'];
-					$name = htmlspecialchars($ligne['name']);
-					$price = $ligne['price'].'€';
-					$score = calculScore($connex,$id).'/5';
-					$image = 'produit-image/'.$ligne['image'];
-					echo "<div class='article'>";
-					echo "<a href='product.php?id=$id' id = 'noblue'>";
-					echo "<img src=$image style= 'max-width: 200px; max-height: 200px'>";
-					echo "<div id='titre'><h3>$name</h3></div>";
-					echo "<h4>$price</h4>";
-					echo "<span>Note: $score</span>";
-					echo "</a>";
-				    echo "</div>";
+					while($ligne = mysqli_fetch_assoc($response)){
+						$id = $ligne['id'];
+						$name = htmlspecialchars($ligne['name']);
+						$price = $ligne['price'].'€';
+						$score = calculScore($connex,$id).'/5';
+						$image = 'produit-image/'.$ligne['image'];
+						echo "<div class='article'>";
+						echo "<a href='product.php?id=$id' id = 'noblue'>";
+						echo "<img src=$image style= 'max-width: 200px; max-height: 200px'>";
+						echo "<div id='titre'><h3>$name</h3></div>";
+						echo "<h4>$price</h4>";
+						echo "<span>Note: $score</span>";
+						echo "</a>";
+					    echo "</div>";
+					}
+				}else{
+					echo "<h1>Les profils vendeurs: </h1>";
+					while($ligne = mysqli_fetch_assoc($response)){
+						$id = $ligne['id'];
+						$name = htmlspecialchars($ligne['pseudo']);
+						echo "<div class='panier'>";
+						echo "<a href='historiquevente.php?id=$id' id = 'noblue'>";
+						echo "<span>$name</span>";
+						echo "</a>";
+					    echo "</div>";
+					}
 				}
 			}else{
-				echo "<h1>Les profils vendeurs: </h1>";
-				while($ligne = mysqli_fetch_assoc($response)){
-					$id = $ligne['id'];
-					$name = htmlspecialchars($ligne['pseudo']);
-					echo "<div class='panier'>";
-					echo "<a href='historiquevente.php?id=$id' id = 'noblue'>";
-					echo "<span>$name</span>";
-					echo "</a>";
-				    echo "</div>";
-				}
+				echo "<h1>Erreur</h1>";
 			}
-		}else{
-			echo "<h1>Erreur</h1>";
-		}
+	    }
     }
     //Fonction de recherche de la deathbar
 function deathbar($connex, $search,$type){
@@ -208,6 +199,17 @@ function deathbar($connex, $search,$type){
 			}
 		}
 	}
+
+	//Fonction qui supprime un élément d'une table selon son id
+	function supression($connex,$table,$id){
+		$req=  "DELETE FROM $table WHERE id = $id;";
+		$response = mysqli_query($connex, $req);
+		if($response){
+			echo "supression réussie";
+		}else{
+
+		}
+	}
 	//Fonction qui calcule la note d'un produit
 	function calculScore($connex, $id){
 		$req = "SELECT AVG(score) as score FROM Score WHERE idProduct = $id;";
@@ -228,12 +230,10 @@ function deathbar($connex, $search,$type){
 		if($response){
 			$ligne = mysqli_fetch_assoc($response);
 			$img = 'produit-image/'.$ligne['image'];
-			$description = htmlspecialchars($ligne['description']);
+			$description = htmlentities($ligne['description']);
 			$name = htmlspecialchars($ligne['name']);
 			$date = datetransfo($ligne['date']);
-			$score = calculScore($connex, $id);
-			if($score == 0) $note = 'N/A';
-			else $note = $score.'/5';
+			$note = calculScore($connex, $id).'/5';
 			$pseudo = htmlspecialchars(($ligne["pseudo"]));
 			$price = $ligne['price'].'€';
 			$idP = $_GET['id'];
@@ -336,12 +336,13 @@ function deathbar($connex, $search,$type){
 		}
 	}
 	function afficherCommentaires($connex, $idProduit) {
+		echo "<div id='connx'>";
 		productExist($connex, $idProduit);
 
 		$req = "SELECT co.id, text, image, date, pseudo FROM Comment co, Customer C WHERE co.idProduct = $idProduit AND co.idCustomer = C.id ORDER BY co.id DESC;";    
 		$resultat = mysqli_query($connex, $req);
 		// Vérifier s'il y a des commentaires à afficher
-		echo "<br><a href='product.php?id=$idProduit' class='link'>Retourner au produit</a><br><br>";
+		echo "<a href='product.php?id=$idProduit' class='link'>Retourner au produit</a>";
 		if (mysqli_num_rows($resultat) > 0) {
 			while ($row = mysqli_fetch_assoc($resultat)) {
 				$idCom = $row['id'];
@@ -351,25 +352,26 @@ function deathbar($connex, $search,$type){
 				
 				$date = dateTransfo2($row['date']);
 				
-				echo "<div class='com'>";
-				echo "<span>Commentaire de l'utilisateur <strong>$pseudo</strong> le $date :</span>";
-				if(isCustomerOfComment($connex, $idCom)){
-					echo "<a href='suppressioncom.php?numCom=".$row['id']."'><img src='supr.png' alt='Supprimer' id='suppr'></a>";
-				}
+				
+				echo "<p>Commentaire de l'utilisateur <strong>$pseudo</strong> le $date :</p>";
 				echo "<p>$text</p>";
+
+				if(isCustomerOfComment($connex, $idCom)){
+				 // a réglé pour reussir la suppression
+					echo "<a href='suppressioncom.php?numCom=".$row['id']."'><img src='supr.png' alt='Supprimer'></a>";
+				}
 
 				if ($row['image'] != "NULL") {
 					echo "<img src=$image alt='Image du commentaire'>";
 				}
-				echo "</div>";
 			   
 			}
 		} else {
-			echo "<br><span style='text-align: center;'>Aucun commentaire trouvé pour ce produit.</span>";
+			echo "Aucun commentaire trouvé pour ce produit.";
 		}
+		echo "</div>";
 		
 	}
-	//Fonction qui indique si l'utilisateur connnecté est à l'origine du commentaire ou si c'est un admin
 	function isCustomerOfComment($connex, $idCom){
 		if(isset($_SESSION['type'])){
 			if($_SESSION['type'] == 'Admin') return true;
@@ -377,7 +379,7 @@ function deathbar($connex, $search,$type){
 				return false;
 			}
 		}else return false;
-		$response = mysqli_query($connex, "SELECT id FROM Comment WHERE id=$idCom AND idCustomer=".$_SESSION['id']);
+		$response = mysqli_query($connex, "SELECT id FROM Comment WHERE idCustomer=".$_SESSION['id']);
 		if($response){
 			if(mysqli_num_rows($response) == 1) return true;
 		}return false;

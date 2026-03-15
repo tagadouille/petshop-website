@@ -1,3 +1,4 @@
+/*Style du header */
 body{
     background-image: url("Fond site.jpg"); 
     -webkit-background-size: cover;
@@ -5,9 +6,8 @@ body{
     -o-background-size: cover;
     background-size: cover;
     margin: 0px 0px 0px 0px;
-    padding: 0;
 }
-/*Style du header */
+
 .header {
     background-color: #5E548E;
     display:flex;
@@ -75,7 +75,7 @@ body{
 }
 
 #Resbar{
-    margin-left:100px;
+    margin-left:140px;
 }
 
 /*Dropdown */
@@ -111,6 +111,7 @@ body{
     background-color : #4D447B;
 } 
 #nav {
+    margin-left: 100px;
     align-items: center;
     display: inline-flex;
     float: right;
@@ -157,11 +158,6 @@ nav form {
 .link:focus{
     background-color: #B60000;
 }
-#connx textarea{
-    resize: unset;
-    font-size: 14pt;
-}
-/*Pour les liens */
 .link{
     background-color: red;
     border-style: solid;
@@ -286,7 +282,7 @@ nav form {
     height: 100px;
 }
 .panier:hover{
-    background-color: #5B5B5B;
+    background-color: #625959;
 }
 .panier img{
     max-height: 100px;
@@ -299,44 +295,13 @@ nav form {
     text-decoration: unset;
     color: black;
 }
-.panier #name{
-    text-decoration: unset;
-}
 #date{
     text-align: right;
     font-weight: unset;
 }
-/*Style pour les commentaires */
-.cm{
-    text-align: center;
-    font-size: 21pt;
-    margin-bottom: 150px;
- }
-.com{
-    background-color: grey;
-    border: 2px solid black;
-    text-align: center;
-    max-height: 500px;
-    overflow: scroll;
-}
-.com #suppr{
-    max-height: 100px;
-    max-width: 100px;
-    float: right;
-}
-.com img{
-    max-height: 200px;
-    max-width: 200px;
-}
-.com span{
-    display: inline-block;
-    text-align: left;
-}
-
 /*Style pour la death bar */
 #deathbar{
     background-color: black;
-    background-image: none;
 }
 #db{
     color:white;
@@ -377,10 +342,3 @@ nav form {
 #db aside{
     text-align: left;
 }
-/*Style pour les pages 'vides'*/
-
-.empty{
-    text-align: center;
-    font-size: 26pt;
-    margin-bottom: 350px;
- }

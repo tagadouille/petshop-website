@@ -4,13 +4,13 @@
 ?>
 		<input type="hidden" name="accounttype" value = <?php echo $accounttype ?>>
 		<label for="nom"> Entrez votre Nom:</label><br>
-		<input type="text" name="nom" size = "20" placeholder="Nom" maxlength="50"><br><br>
+		<input type="text" name="nom" size = "20" placeholder="Nom"><br><br>
 
 		<label for="prenom"> Entrez votre Prénom:</label><br>
-		<input type="text" name="prenom" size = "20" placeholder="Prénom" maxlength="50"><br><br>
+		<input type="text" name="prenom" size = "20" placeholder="Prénom"><br><br>
 
 		<label for="date"> Entrez votre Date de naissance:</label><br>
-		<input type="date" name="date" ><br>
+		<input type="date" name="date"><br>
 
 		<p> Veuillez selectionner votre Sexe.</p>
 		<input type="radio" id="Homme" name="sexe" value="homme" checked>
@@ -21,18 +21,18 @@
 		<label for="Intersexe">Intersexe</label><br><br>
 
 		<label for="pseudo">Entrez votre Pseudo :</lable><br>
-		<input type="text" name="pseudo" size = "20" placeholder="Pseudo" maxlength="50"><br>
+		<input type="text" name="pseudo" size = "20" placeholder="Pseudo"><br>
 		<?php if($err == 4){
 			echo " &nbsp; <span style='color: red;'>Ce pseudo existe déjà</span><br><br>";
 		} ?>
 		<label for="mdp">Entrez votre mot de passe :</lable><br>
-		<input type="password" name="psw" size = "20" placeholder="Mot de passe" maxlength="50"><br>
+		<input type="password" name="psw" size = "20" placeholder="Mot de passe"><br>
 		<?php if($err == 1 || $err == 3){
 			echo " &nbsp; <span style='color: red;'>Les mots de passes ne correspondent pas</span>";
 		} ?><br>
 
 		<label for="mdp2">Réentrez votre mot de passe :</lable><br>
-		<input type="password" name="psw2" size = "27" placeholder="Mot de passe" maxlength="50"><br>
+		<input type="password" name="psw2" size = "27" placeholder="Mot de passe"><br>
 		<?php if($err == 2 || $err==3){
 			echo "<span style='color : red;'>Des champs du formulaire ne sont pas remplis! Veuillez le faire.</span><br>";
 		}
@@ -53,10 +53,10 @@
     function adr(){
         ?>
     <label for="adresse"> Entrez votre Adresse:</label><br>
-        <input type="text" name="adresse" size = "20" placeholder="Adresse" maxlength="50"><br><br>
+        <input type="text" name="adresse" size = "20" placeholder="Adresse"><br><br>
 
     <label for="pays">Entrez votre Pays :</labled><br>
-        <input type="text" name="pays" size = "20" placeholder="Pays" maxlength="30"><br><br>
+        <input type="text" name="pays" size = "20" placeholder="Pays"><br><br>
     
         <?php
     }
@@ -74,16 +74,16 @@
 			}
 		?>
 		<label for="product"> Nom du Produit:</label>
-		<input type="text" name="name" maxlength="50" size="30"><br><br>
+		<input type="text" name="name"><br><br>
 		<label for="price">Prix:</label>
-        <input type="number" step="0.01" name="price" max="10000000" size="8"><label for="price">€</label><br><br>
+        <input type="number" step="0.01" name="price"><label for="price">$</label><br><br>
 
         <label for="subcategory">Sous-catégorie:</label>
 
         <?php optioncat($animal);?><br><br>
 
-		<label for>Description</label><br>
-		<textarea name="description" rows="10" cols="70" maxlength="3000"></textarea><br><br>
+		<label for>Description</label>
+		<textarea name="description" rows="10" cols="30"></textarea><br><br>
 		<?php if($error2 == 2){
 			echo "<span style='color:red;'>Le fichier importer n'est pas une image</span><br>";	
 		}?>
@@ -102,19 +102,19 @@
 <?php function Ajoutprod(){
 	?>
 
-	<form action="proform2.php" method="post" id="connx">
+<form action="proform2.php" method="post" id="connx">
 
-	<input type="radio" name="animal" value="1" checked>
-	<label for="Chats">Chats</label>
+<input type="radio" name="animal" value="1" checked>
+<label for="Chats">Chats</label>
 
-	<input type="radio" name="animal" value="2">
-	<label for="Chiens">Chiens</label>  
+<input type="radio" name="animal" value="2">
+<label for="Chiens">Chiens</label>  
 
-	<input type="radio" name="animal" value="3">
-	<label for="Oiseaux">Oiseaux</label><br><br> 
+<input type="radio" name="animal" value="3">
+<label for="Oiseaux">Oiseaux</label><br><br> 
 
-	<input type="submit" value = "Envoyez">
-	<input type="reset" value="Renitialisez">
+<input type="submit" value = "Envoyez">
+<input type="reset" value="Renitialisez">
 
 </form>
 
@@ -144,21 +144,21 @@ function optioncat($category){
 	?>
 
 	<form action="commentaire2.php" id="connx" method="post" enctype="multipart/form-data">
-	<?php
+<?php
 
-	if($error2 == 1 && $fileerror !=1){
-		echo "<span style='color:red;'><strong>Vérifier que vous aviez bien remplis le champ commentaire</strong></span><br><br>";
-	}
-	if($error2 == 1 && $fileerror == 1){
-		echo "<span style='color:red;'><strong>Vérifier que vous aviez bien remplis le champ commentaire</strong></span><br>";
-		echo "<span style='color:red;'><strong>Vérifier que le fichier importé a la bonne extension</strong></span><br><br>";
-	}
-	if($error2 !=1 && $fileerror ==1){
-		echo "<span style='color:red;'><strong>Vérifier que le fichier importé a la bonne extension</strong></span><br><br>";
-	}
-	?>
-	<label for="com">Entrez le commentaire</label><br>
-	<textarea name="commentaire" rows="10" cols="70" maxlength="1000"></textarea><br><br>
+if($error2 == 1 && $fileerror !=1){
+	echo "<span style='color:red;'><strong>Vérifier que vous aviez bien remplis le champ commentaire</strong></span><br><br>";
+}
+if($error2 == 1 && $fileerror == 1){
+	echo "<span style='color:red;'><strong>Vérifier que vous aviez bien remplis le champ commentaire</strong></span><br>";
+	echo "<span style='color:red;'><strong>Vérifier que le fichier importé a la bonne extension</strong></span><br><br>";
+}
+if($error2 !=1 && $fileerror ==1){
+	echo "<span style='color:red;'><strong>Vérifier que le fichier importé a la bonne extension</strong></span><br><br>";
+}
+?>
+	<label for="com">Entrez le commentaire</label>
+	<textarea name="commentaire" rows="10" cols="30"></textarea><br><br>
 	
 	<label for="importer"><strong>Facultatif:</strong> Importer un fichier (PNG, WEBP, JPEG, GIF.)</label><br>
 	<input type="file" name="file2"><br><br>

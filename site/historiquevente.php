@@ -52,8 +52,9 @@ $connex=connection();
             header('Location: login.php');
             exit();
         }
-    }echo "<div id='down'>";
-    footers();
+    }
+
+
 ?>
 
 </body>

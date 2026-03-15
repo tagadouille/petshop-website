@@ -11,18 +11,11 @@
 		header('Location: login.php');
 		exit();
 	}
-	if(!empty($_GET['numUser']) && !empty($_GET['type'])){
+	if(isset($_GET['numUser']) && isset($_GET['type'])){
 		if($_GET['type'] == 'Customer'){
 			$connex = connection();
 			$id = $_GET['numUser'];
 			$response = mysqli_query($connex, "DELETE FROM Score WHERE idCustomer=$id;");
-
-			//Suppression de l'image du commentaire
-			$response = mysqli_query($connex, "SELECT image FROM Comment WHERE idCustomer = $id;");
-        	for($i = 0; $i < mysqli_num_rows($response); $i++){
-            	$img = mysqli_fetch_assoc($response)['image'];
-            	if($img != 'NULL') unlink('image-commentaire/'.$img); //Supression
-        	}
 			$response2 = mysqli_query($connex,"DELETE FROM Comment WHERE idCustomer=$id;");
 			$response3 = mysqli_query($connex, "DELETE FROM Historic WHERE idCustomer=$id;");
 			$response4 = mysqli_query($connex, "DELETE FROM Basket WHERE idCustomer=$id;");

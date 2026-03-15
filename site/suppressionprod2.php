@@ -12,7 +12,7 @@ if(isset($_SESSION['type'])){
     exit();
 }
 $connex = connection();
-    if(!empty($_GET['numProd'])){
+    if(!empty(($_GET['numProd'])){
         $idpro = $_GET['numProd'];
 
         if(deleteProd($connex, $idpro)){
@@ -21,7 +21,7 @@ $connex = connection();
             $_SESSION['msg'] = "La supression n'a pas réussie";
         }
     }
-header('Location: deathbar.php');
+    header('Location: deathbar.php');
 exit();
 
 ?>

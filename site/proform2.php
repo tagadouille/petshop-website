@@ -20,7 +20,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style2.css">
-    <link rel="icon" type="image/png" href="icon.png" />
     <title>proform2</title>
 
 </head>
@@ -28,28 +27,35 @@
 
 <?php navbar(1);?>
     <h1 id="cnx_h">Ajoutez un produit</h1>
-    <form action="ajoutprod.php" method="post" id ="connx" enctype="multipart/form-data">
+    <form action="finish3.php" method="post" id ="connx" enctype="multipart/form-data">
 
-<?php 
-
-    if(isset($_SESSION['msg']) && isset($_SESSION['msg2'])){
-        $error = $_SESSION['msg'];
-        $error2 = $_SESSION['msg2'];
-    }else{ 
-        $error = 0;
-        $error2 = 0;
-    }
-
-    if(isset($_POST['animal'])){
-        $_SESSION['animal'] = $_POST['animal'];
-    }
-    productForm($error, $error2, $_SESSION['animal']);
-?>
-
-    </form>
 <?php
-    footers();
+
+
+
+if(isset($_SESSION['msg']) && isset($_SESSION['msg2'])){
+    $error = $_SESSION['msg'];
+    $error2 = $_SESSION['msg2'];
+}else{ 
+    $error = 0;
+    $error2 = 0;
+}
+
+if(isset($_POST['animal'])){
+    $_SESSION['animal'] = $_POST['animal'];
+    $sessionanimal = $_SESSION['animal'];
+    if($sessionanimal != 1 && $sessionanimal != 2 && $sessionanimal !=3){
+        $msgerror = "<p style='color:red;'><strong>Choisissez la bonne catégorie</strong></p>"; 
+        $_SESSION['msg'] = $msgerror;
+        header("Location: proform1.php");
+        exit();
+    }
+}
+productForm($error, $error2, $_SESSION['animal']);
 ?>
+
+</form>
+    
 </body>
 </html>
 

@@ -8,8 +8,7 @@
         $idProduct= $_SESSION['idProd'];
         $idCustomer = $_SESSION['id']; 
         $score= (int) $note;
-        notHere($connex, $idCustomer, 'Customer');
-        productExist($connex, $idProduct);
+        echo $score;
         //Verification de si l'utilisateur a déjà mis une note
         $req = "SELECT id FROM Score WHERE idProduct = $idProduct AND idCustomer = $idCustomer;";
         $response = mysqli_query($connex, $req);
@@ -21,6 +20,9 @@
             $response = mysqli_query($connex, $req);
         }
     }
+if(isset($_SESSION['id'])) navbar(-1);
+	else navbar(0);
+
     if(isset($_POST['rating'])){
         $note = $_POST['rating'];
     }

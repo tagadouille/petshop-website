@@ -26,20 +26,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style2.css">
-	<link rel="icon" type="image/png" href="icon.png" />
-	<title>Produit ajouté au panier avec succès</title>
+	<title>Produit acheter avec succès</title>
 </head>
 <body>
-		<?php
-			navbar(-1);
-			echo "<div class='empty'><h1>Produit ajouter au panier avec succès</h1>
-			<a href='product.php?id=$id'>Revenir au produit</a>&nbsp;";
-		?>
-		<a href="panier.php">Aller au panier</a>&nbsp;
-		<a href="index.php">Aller à l'acceuil</a>&nbsp;
-	</div>
 	<?php
-		footers();
+		navbar(-1);
+		echo "<h1>Produit acheter un succès</h1>
+		<a href='product.php?id=$id'>Revenir au produit</a>";
 	?>
+	<a href="panier.php">Aller au panier</a>
+	<a href="index.php">Aller à l'acceuil</a>
 </body>
 </html>

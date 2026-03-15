@@ -156,10 +156,10 @@
 					$_SESSION['address'] = htmlspecialchars(mysqli_real_escape_string($connex, $_POST['adresse']));
 				}
 			}else{
-				$_SESSION['msgg'] = 4;
+				$_SESSION['msg'] = 4;
 			}
 		}else{
-			$_SESSION['msgg'] = $response;
+			$_SESSION['msg'] = $response;
 		}return $response;
 	}
 
@@ -359,7 +359,6 @@ function insertionComment($connex, $idCustomer, $idProduct, $text, $image) {
 function buy($connex, $id,$qte){
 	$idCust = $_SESSION['id'];
 	notHere($connex, $idCust, 'Customer');
-	productExist($connex, $id);
 	for ($i=0; $i < $qte; $i++) { 
 		$req1 = "INSERT INTO Basket(idProduct,idCustomer) VALUES($id,$idCust);";
 		$response = mysqli_query($connex,$req1);
@@ -413,16 +412,16 @@ function sell($connex, $id){
 	if($response) return true;
 	return false;
 }
-//Fonction qui indique si un produit a été acheté ou non, Donc si il est dans l'historique d'achat du client
 function isbuy($connex, $idPr){
         if(isset($_SESSION['type'])){
             if($_SESSION['type'] != 'Customer'){
                 return false;
             }$idCust = $_SESSION['id'];
             if(notHere($connex, $idCust, 'Customer')) return false;
+
             $req = "SELECT id FROM Historic WHERE idProduct=$idPr AND idCustomer = $idCust;";
             $response = mysqli_query($connex, $req);
-            if(mysqli_num_rows($response) >= 1) return true;
+            if(mysqli_num_rows($response) == 1) return true;
             return false; 
         }else{
             return false;
@@ -463,12 +462,6 @@ function isbuy($connex, $idPr){
 
             $req2 = "DELETE FROM Historic WHERE idProduct = $idpro";
             $response4 = mysqli_query($connex, $req2);
-
-            $response = mysqli_query($connex, "SELECT image FROM Product WHERE id = $idpro;");
-        	if(mysqli_num_rows($response) == 1){
-           		$img = mysqli_fetch_assoc($response)['image'];
-            	if($img != 'NULL') unlink('produit-image/'.$img); //Supression
-        	}
 
             $req3 = "DELETE FROM Product WHERE id=$idpro";
             $response5 = mysqli_query($connex, $req3);

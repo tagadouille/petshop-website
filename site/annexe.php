@@ -15,7 +15,7 @@ function navbar($connected){
 		 		<form method="get" action='index.php' id="Resbar">
 				 	<label>produit</label><input type='radio' name = 'type' value='Product' checked>
         			<label>profil vendeur</label><input type='radio' name = 'type' value='Seller'>&nbsp;
-        			<input type='text' name='search' maxlength="50">
+        			<input type='text' name='search'>
         			<!--<label>profil client</label><input type='radio' name = 'type' value='client'>-->
         			<input type='submit' value='Recherche'>
           		</form>
@@ -23,7 +23,7 @@ function navbar($connected){
 		<div class="button">
 	       <div class="minibox">
 				<div class ='dropdown'>
-					<h3 id='Catégories'><a href="index.php?cat=Chien" id='noblue' style='color:white;'> Chien </a></h3>
+					<h3 id='Catégories'> Chien </h3>
 					<div class='dropdown-content'>
 						<?php 
 							category($connex,'Chien');
@@ -33,7 +33,7 @@ function navbar($connected){
 		    </div><!--
 		     --><div class="minibox">
 		            <div class ='dropdown'>
-						<h3 id='Catégories'><a href="index.php?cat=Chat" id='noblue' style='color:white;'> Chat </a></h3>
+						<h3 id='Catégories'> Chat </h3>
 						<div class='dropdown-content'>
 							<?php 
 								category($connex,'Chat');
@@ -43,7 +43,7 @@ function navbar($connected){
 		        </div><!--
 		     --><div class="minibox">
 		            <div class ='dropdown'>
-						<h3 id='Catégories'><a href="index.php?cat=Oiseau" id='noblue' style='color:white;'> Oiseau </a></h3>
+						<h3 id='Catégories'> Oiseau </h3>
 						<div class='dropdown-content'>
 							<?php 
 								category($connex,'Oiseau');
@@ -77,72 +77,72 @@ function navbar($connected){
 <?php function footers(){
 ?>
 
-	<style>
-		.footer{
-			margin-top: 100px;
-			background-color: #24262b;
-	   		padding: 100px 0px;
-	   		margin-bottom: 0px;
-		}
-
-		.contenue{
-			max-width: 2000px;
-			margin:auto;
-		}
-
-		.ligne{
-			display: flex;
-			flex-wrap: wrap;
-		}
-
-		.footer-colonne{
-			width: 25%;
-	   		padding: 0 15px;
-			margin-left: 100px;
-		}
-
-		.ul{
-			list-style: none;
-		}
-
-		.footer-colonne{
-			width: 25%;
-	   		padding: 0 15px;
-		}
-
-		.footer-colonne h4{
-		font-size: 18px;
-		color: #ffffff;
-		text-transform: capitalize;
-		margin-bottom: 35px;
-		font-weight: 500;
-		position: relative;
+<style>
+	.footer{
+		background-color: #24262b;
+   		padding: 150px 0px;
 	}
 
-	.footer-colonne h4:before{
-		content: '';
-		position: absolute;
-		left:0;
-		bottom: -10px;
-		background-color: #e91e63;
-		height: 2px;
-		box-sizing: border-box;
-		width: 50px;
+	.contenue{
+		max-width: 2000px;
+		margin:auto;
 	}
 
-	.footer-colonne ul li:not(:last-child){
-		margin-bottom: 10px;
+	.ligne{
+		display: flex;
+		flex-wrap: wrap;
 	}
 
-	.footer-colonne ul li a{
-		font-size: 16px;
-		color: #ffffff;
-		text-decoration: none;
-		font-weight: 500;
-		color: #bbbbbb;
-		display: inline;
-		transition: all 0.3s ease;
+	.footer-colonne{
+		width: 25%;
+   		padding: 0 15px;
+		margin-left: 100px;
 	}
+
+	.ul{
+		list-style: none;
+	}
+
+	.footer-colonne{
+		width: 25%;
+   		padding: 0 15px;
+	}
+
+	.footer-colonne h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+
+.footer-colonne h4:before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+
+.footer-colonne ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+
+.footer-colonne ul li a{
+	font-size: 16px;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 500;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+
+
 </style>
 
 <footer class="footer">
@@ -165,9 +165,9 @@ function navbar($connected){
   	 		<div class="footer-colonne">
   	 			<h4>Magasin</h4>
   	 			<ul>
-  	 				<li><a href="index.php?cat=Chien">Chien</a></li>
-  	 				<li><a href="index.php?cat=Chat">Chat</a></li>
-  	 				<li><a href="index.php?cat=Oiseau">Oiseau</a></li>
+  	 				<li><a href="#Catégories">Chien</a></li>
+  	 				<li><a href="#Catégories">Chat</a></li>
+  	 				<li><a href="#Catégories">Oiseau</a></li>
   	 			</ul>
   	 		</div>
   	 	</div>

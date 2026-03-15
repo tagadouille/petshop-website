@@ -8,8 +8,7 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style2.css">
-    <link rel="icon" type="image/png" href="icon.png" />
-    <title>Contact</title>
+    <title>Contacte</title>
 </head>
 <body>
 
@@ -40,8 +39,6 @@ navbar("none");
 <p><strong>Adresse de la rue :</strong> 123 Rue des Animaux Heureux, 75001 Paris, France</p>
 
 </div>    
-<?php
-    footers();
-?>
+
 </body>
 </html>

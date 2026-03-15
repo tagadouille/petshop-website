@@ -8,8 +8,8 @@ if(isset($_POST['commentaire'])){//Juste le commentaire
     $_SESSION['error'] = $error2;
 }
 if(isset($_POST['commentaire']) && isset($_FILES['file2'])){//commentaire + image
-    $error2=verifierformcom();
-    $fileerror=Imagecom();
+    $error2= verifierformcom();
+    $fileerror= Imagecom();
     $_SESSION['error'] = $error2;
     $_SESSION['fileerror']= $fileerror;
 }if($error2 ==0 && $fileerror ==0){
@@ -22,7 +22,7 @@ if(isset($_POST['commentaire']) && isset($_FILES['file2'])){//commentaire + imag
         $img = 'NULL';
     }else{
         $clé="file2";
-        $img = addImage('image-commentaire', $clé);
+        $img = addImage('image-commentaire/', $clé);
         //$img = "";
     }
     $connex = connection();

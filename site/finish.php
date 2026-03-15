@@ -22,7 +22,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style2.css">
-	<link rel="icon" type="image/png" href="icon.png" />
 	<title>ChunChunMaru</title>
 </head>
 <body>
@@ -31,12 +30,7 @@
 		$_SESSION = array();
 		session_destroy();
 	?>
-	<div class='empty'>
-		<h1>Compte crée avec succès</h1>
-		<a href="login.php">Se connecter</a>
-	</div>
-	<?php
-		footers();
-	?>
+	<h1>Compte crée avec succès</h1>
+	<a href="login.php">Se connecter</a>
 </body>
 </html>

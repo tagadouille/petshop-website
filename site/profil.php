@@ -9,17 +9,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style2.css">
-	<link rel="icon" type="image/png" href="icon.png" />
 	<title>Profil</title>
 </head>
 <body id="bprof">
 	<?php
-		navbar(-1);
+		navbar("none");
 	?>
 	<?php
 		if(isset($_SESSION['id'])){
 	?>
-	<h1 id='h'>Informations du compte</h1>
+	<h1 id='h'>Information du compte</h1>
 	<?php
 		if($_SESSION['type'] == 'Customer') $type = "Client";
 		else if($_SESSION['type'] == 'Seller') $type = 'Vendeur';
@@ -52,18 +51,15 @@
 			echo "<a href='proform1.php' class='link' style = 'margin-left: 20px;'>Ajouter un produit</a>&nbsp;&nbsp;";
 			echo "<a href='historiquevente.php' class='link'>Accéder à la liste des produits mis en vente</a><br>";
 		}else{
-			echo "<a href='deathbar.php' class='link'>Accéder à la Death Bar</a><br><br>";
+			echo "<a href='deathbar.php' class='link'>Accéder à la Death Bar</a>";
 		}
 	?>
 	<br>
 	<a href="deconnect.php">Se déconnecter</a>
 	<?php }else{ ?>
-	<div class='empty'>
-		<h1 id='h'>Veuillez vous connecter pour pouvoir accéder aux informations et aux fonctionnalités de cette page</h1>
-		<a href="login.php" class='link'>Se connecter</a>
-	</div>
+	<h1 id='h'>Veuillez vous connecter pour pouvoir accéder aux informations et aux fonctionnalités de cette page</h1>
+	<a href="login.php">Se connecter</a>
 	<?php }
-		footers();
 	?>
 </body>
 </html>

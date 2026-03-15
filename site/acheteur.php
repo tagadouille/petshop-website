@@ -15,7 +15,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style2.css">
-    <link rel="icon" type="image/png" href="icon.png" />
     <title>Compte pour Acheteur</title>
 </head>
 <body>
@@ -25,8 +24,8 @@
 ?>
 	<form id="connx" method = "post" action='finish.php'>
 <?php
-	if(isset($_SESSION['msgg'])){
-		$err = $_SESSION['msgg'];
+	if(isset($_SESSION['msg'])){
+		$err = $_SESSION['msg'];
 	}else{
 		$err = 0;
 	}

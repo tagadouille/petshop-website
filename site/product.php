@@ -14,8 +14,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style2.css">
-	<link rel="icon" type="image/png" href="icon.png" />
-	<title>ChunChuMaru</title>
+	<title>Nom de produit</title>
 </head>
 <body>
 	<?php if(isset($_SESSION['id'])) navbar(-1);
@@ -25,8 +24,5 @@
 			productDisplay(connection(),$_GET['id']);
 		?>
 	</section>
-	<?php
-		footers();
-	?>
 </body>
 </html>

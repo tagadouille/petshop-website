@@ -1,23 +1,6 @@
 <?php
     require_once('annexe.php');
     require_once('creation.php');
-    function redirection() {
-        if(isset($_POST['type'])) {
-            $accounttype = $_POST['type'];
-            if($accounttype == "vendeur") {
-                header("Location: vendeur.php");
-                exit();
-            } elseif ($accounttype == "client") {
-                header("Location: acheteur.php");
-                exit();
-            } elseif ($accounttype == "administrateur") {
-                header("Location: verify.php");
-                exit();
-            }
-        }
-    }
-
-    redirection();
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +8,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style2.css">
-    <link rel="icon" type="image/png" href="icon.png" />
     <title>ChunChunMaru</title>
 </head>
 <body>
@@ -47,10 +29,24 @@
 
         <input type="submit" value="Créer le compte">
     </form>
-    <br><br><br><br><br><br><br><br><br>
 
-<?php
-    footers();
+<?php	function redirection() {
+        if(isset($_POST['type'])) {
+            $accounttype = $_POST['type'];
+            if($accounttype == "vendeur") {
+                header("Location: vendeur.php");
+                exit();
+            } elseif ($accounttype == "client") {
+                header("Location: acheteur.php");
+                exit();
+            } elseif ($accounttype == "administrateur") {
+                header("Location: verify.php");
+                exit();
+            }
+        }
+    }
+
+	redirection();
 ?>
 </body>
 </html>
